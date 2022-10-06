@@ -14,7 +14,7 @@ public class Class1
         {
             Random rand = new Random();
             if (max - min < 1 || max - min < count)
-                return null;
+                return null; // EXCEPTION FEHLT NOCH
 
             array = new int[count];
             while (array.Length < count)
@@ -30,9 +30,9 @@ public class Class1
 
         void Print()
         {
-            foreach (var VARIABLE in array)
+            foreach (var element in array)
             {
-
+                Console.WriteLine(element);
             }
         }
 
