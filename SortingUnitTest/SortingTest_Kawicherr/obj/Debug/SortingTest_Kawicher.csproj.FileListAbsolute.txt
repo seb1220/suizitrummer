@@ -1,0 +1,8 @@
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\bin\Debug\SortingTest_Kawicherr.exe.config
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\bin\Debug\SortingTest_Kawicherr.exe
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\bin\Debug\SortingTest_Kawicherr.pdb
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\obj\Debug\SortingTest_Kawicher.csproj.AssemblyReference.cache
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\obj\Debug\SortingTest_Kawicher.csproj.SuggestedBindingRedirects.cache
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\obj\Debug\SortingTest_Kawicher.csproj.CoreCompileInputs.cache
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\obj\Debug\SortingTest_Kawicherr.exe
+C:\Users\sebas\source\repos\suizitrummer\SortingUnitTest\SortingTest_Kawicherr\obj\Debug\SortingTest_Kawicherr.pdb
