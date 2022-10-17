@@ -20,7 +20,7 @@ namespace SortingUnitTestTest
             algorithms.CreateRandoms(min, max, count, duplicates);
             int[] array = algorithms.GetRandoms();
 
-            Assert.Equals(array.Length, count);
+            Assert.AreEqual(count, array.Length);
             Assert.IsTrue(array.Min() >= min);
             Assert.IsTrue(array.Max() <= max);
 

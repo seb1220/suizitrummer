@@ -20,6 +20,13 @@ namespace SortingTest_Kawicher
             {
                 Console.WriteLine(i);
             }
+            
+            Console.WriteLine("-asldjflafjalsjdf");
+            algorithms.HeapSort();
+            foreach(int i in algorithms.GetRandoms())
+            {
+                Console.WriteLine(i);
+            }
         }
     }
 }

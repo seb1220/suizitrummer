@@ -17,7 +17,7 @@ namespace SortingTest_Kawicher
                 throw new Exception("invalid range: " + min + " - " + max);
 
             array = new int[count];
-            for (int i = 0; i < count - 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 int newInt = rand.Next(min, max);
                 while (array.Contains(newInt))
@@ -85,12 +85,9 @@ namespace SortingTest_Kawicher
 
         private void HeapSort(int sorted)
         {
-            for (int i = (array.Length - sorted - 1) / 2; i > 0; i--)
+            for (int i = (array.Length - sorted - 1) / 2; i >= 0; i--)
             {
-                if (array[i * 2 + 1] > array[i])
-                {
-                    (array[i], array[i * 2 + 1]) = (array[i * 2 + 1], array[i]);
-                }
+                Heapify(i);
             }
             (array[0], array[array.Length - 1]) = (array[array.Length - 1],  array[0]);
             if (sorted + 1 < array.Length)
