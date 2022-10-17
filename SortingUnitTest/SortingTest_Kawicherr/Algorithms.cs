@@ -93,7 +93,8 @@ namespace SortingTest_Kawicher
                 }
             }
             (array[0], array[array.Length - 1]) = (array[array.Length - 1],  array[0]);
-            HeapSort(sorted + 1);
+            if (sorted + 1 < array.Length)
+                HeapSort(sorted + 1);
         }
 
         private void Heapify(int index)
