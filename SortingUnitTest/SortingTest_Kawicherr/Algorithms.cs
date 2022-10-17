@@ -80,30 +80,31 @@ namespace SortingTest_Kawicher
 
         public void HeapSort()
         {
-            HeapSort(0);
+            for (int sorted = 0; sorted < array.Length - 1; ++sorted)
+            {
+                for (int i = (array.Length - sorted - 2) / 2; i >= 0; i--)
+                {
+                    Heapify(i, sorted);
+                }
+                (array[0], array[array.Length - sorted - 1]) = (array[array.Length - sorted - 1], array[0]);
+            }
         }
 
-        private void HeapSort(int sorted)
+        private void Heapify(int index, int sorted)
         {
-            for (int i = (array.Length - sorted - 1) / 2; i >= 0; i--)
-            {
-                Heapify(i);
-            }
-            (array[0], array[array.Length - 1]) = (array[array.Length - 1],  array[0]);
-            if (sorted + 1 < array.Length)
-                HeapSort(sorted + 1);
-        }
-
-        private void Heapify(int index)
-        {
-            if (array.Length > index * 2 - 1 && array[index] < array[index * 2]) {
-                (array[index], array[index * 2]) = (array[index * 2], array[index]);
-                Heapify(index * 2);
-            }
-            if (array.Length > index * 2 && array[index] < array[index * 2 + 1])
-            {
+            if (index * 2 + 1 >= array.Length - sorted - 1)
+                return;
+            
+            if (array.Length > index * 2 + 1 && array[index] < array[index * 2 + 1]) {
                 (array[index], array[index * 2 + 1]) = (array[index * 2 + 1], array[index]);
-                Heapify(index * 2 + 1);
+                if ((index * 2 + 1) * 2 + 1 < array.Length)
+                    Heapify((index * 2 + 1) * 2 + 1, sorted);
+            }
+            if (array.Length > index * 2 + 2 && array[index] < array[index * 2 + 2])
+            {
+                (array[index], array[index * 2 + 2]) = (array[index * 2 + 2], array[index]);
+                if ((index * 2 + 2) * 2 + 1 < array.Length)
+                    Heapify((index * 2 + 2) * 2 + 1, sorted);
             }
         }
 
