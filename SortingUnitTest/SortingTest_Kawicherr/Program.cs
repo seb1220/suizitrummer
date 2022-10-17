@@ -12,10 +12,14 @@ namespace SortingTest_Kawicher
 
             int min = 10;
             int max = 100;
-            int count = 50;
+            int count = 10;
             bool duplicates = false;
             algorithms.CreateRandoms(min, max, count, duplicates);
-            
+
+            foreach(int i in algorithms.GetRandoms())
+            {
+                Console.WriteLine(i);
+            }
         }
     }
 }

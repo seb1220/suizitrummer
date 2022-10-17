@@ -108,5 +108,17 @@ namespace SortingTest_Kawicher
                 Heapify(index * 2 + 1);
             }
         }
+
+        public int this[int i]
+        {
+            get
+            {
+                return array[i];
+            }
+            set
+            {
+                array[i] = value;
+            }
+        }
     }
 }
