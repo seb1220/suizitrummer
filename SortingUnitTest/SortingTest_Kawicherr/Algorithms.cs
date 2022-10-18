@@ -135,9 +135,12 @@ namespace SortingTest_Kawicher
             if (index * 2 + 1 >= array.Length - sorted)
                 return;
             
+            Thread t1 = new Thread(() => Heapify((index * 2 + 1) * 2 + 1, sorted));
+            Thread t2 = new Thread(() => Heapify((index * 2 + 2) * 2 + 1, sorted));
+            
             if (array.Length > index * 2 + 1 && array[index] < array[index * 2 + 1]) {
                 (array[index], array[index * 2 + 1]) = (array[index * 2 + 1], array[index]);
-                Heapify((index * 2 + 1) * 2 + 1, sorted);
+                t1.Start();
             }
             
             if (index * 2 + 2 >= array.Length - sorted)
@@ -145,9 +148,13 @@ namespace SortingTest_Kawicher
             if (array.Length > index * 2 + 2 && array[index] < array[index * 2 + 2])
             {
                 (array[index], array[index * 2 + 2]) = (array[index * 2 + 2], array[index]);
-                Heapify((index * 2 + 2) * 2 + 1, sorted);
+                t2.Start();
             }
             
+            if (t1.IsAlive)
+                t1.Join();
+            if (t2.IsAlive)
+                t2.Join();
         }
 
         public int this[int i]
