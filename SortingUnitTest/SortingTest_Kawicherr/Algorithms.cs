@@ -72,7 +72,6 @@ namespace SortingTest_Kawicher
 
         public void QuickSort()
         {
-            Console.WriteLine("ich will sterben");
             QuickSort(0, array.Length - 1);
         }
 
@@ -83,7 +82,7 @@ namespace SortingTest_Kawicher
             int j = end;
             bool iLocked = false;
             bool jLocked = false;
-            //while (i <= j || (i <= end && j >= start && (array[i] < array[pivot] && array[j] > array[pivot])))
+            
             while (i <= j)
             {
                 iLocked = array[i] > array[pivot];
@@ -133,20 +132,21 @@ namespace SortingTest_Kawicher
 
         private void Heapify(int index, int sorted)
         {
-            if (index * 2 + 1 >= array.Length - sorted - 1)
+            if (index * 2 + 1 >= array.Length - sorted)
                 return;
             
             if (array.Length > index * 2 + 1 && array[index] < array[index * 2 + 1]) {
                 (array[index], array[index * 2 + 1]) = (array[index * 2 + 1], array[index]);
-                if ((index * 2 + 1) * 2 + 1 < array.Length)
-                    Heapify((index * 2 + 1) * 2 + 1, sorted);
             }
+            Heapify((index * 2 + 1) * 2 + 1, sorted);
+            
+            if (index * 2 + 2 >= array.Length - sorted)
+                return;
             if (array.Length > index * 2 + 2 && array[index] < array[index * 2 + 2])
             {
                 (array[index], array[index * 2 + 2]) = (array[index * 2 + 2], array[index]);
-                if ((index * 2 + 2) * 2 + 1 < array.Length)
-                    Heapify((index * 2 + 2) * 2 + 1, sorted);
             }
+            Heapify((index * 2 + 2) * 2 + 1, sorted);
         }
 
         public int this[int i]
