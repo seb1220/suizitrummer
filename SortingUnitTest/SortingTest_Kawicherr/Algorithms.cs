@@ -137,16 +137,17 @@ namespace SortingTest_Kawicher
             
             if (array.Length > index * 2 + 1 && array[index] < array[index * 2 + 1]) {
                 (array[index], array[index * 2 + 1]) = (array[index * 2 + 1], array[index]);
+                Heapify((index * 2 + 1) * 2 + 1, sorted);
             }
-            Heapify((index * 2 + 1) * 2 + 1, sorted);
             
             if (index * 2 + 2 >= array.Length - sorted)
                 return;
             if (array.Length > index * 2 + 2 && array[index] < array[index * 2 + 2])
             {
                 (array[index], array[index * 2 + 2]) = (array[index * 2 + 2], array[index]);
+                Heapify((index * 2 + 2) * 2 + 1, sorted);
             }
-            Heapify((index * 2 + 2) * 2 + 1, sorted);
+            
         }
 
         public int this[int i]
