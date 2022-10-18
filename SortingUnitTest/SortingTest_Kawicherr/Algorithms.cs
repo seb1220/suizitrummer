@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SortingTest_Kawicher
@@ -71,11 +73,50 @@ namespace SortingTest_Kawicher
         public void QuickSort()
         {
             Console.WriteLine("ich will sterben");
+            QuickSort(0, array.Length - 1);
         }
 
         private void QuickSort(int start, int end)
         {
+            int pivot = start;
+            int i = start + 1;
+            int j = end;
+            bool iLocked = false;
+            bool jLocked = false;
+            //while (i <= j || (i <= end && j >= start && (array[i] < array[pivot] && array[j] > array[pivot])))
+            while (i <= j)
+            {
+                iLocked = array[i] > array[pivot];
+                jLocked = array[j] < array[pivot];
+                
+                if (iLocked && jLocked)
+                {
+                    (array[i], array[j]) = (array[j], array[i]);
+                    iLocked = jLocked = false;
+                }
+                
+                i += (iLocked ? 0 : 1);
+                j -= (jLocked ? 0 : 1);
+            }
 
+            if (array[j] < array[pivot])
+            {
+                (array[pivot], array[j]) = (array[j], array[pivot]);
+                pivot = j;
+            }
+
+            Thread t1 = new Thread(() => QuickSort(start, pivot - 1));
+            Thread t2 = new Thread(() => QuickSort(pivot + 1, end));
+            
+            if (pivot - start > 0)
+                t1.Start();
+            if (end - pivot > 0)
+                t2.Start();
+
+            if (t1.IsAlive)
+                t1.Join();
+            if (t2.IsAlive)
+                t2.Join();
         }
 
         public void HeapSort()
