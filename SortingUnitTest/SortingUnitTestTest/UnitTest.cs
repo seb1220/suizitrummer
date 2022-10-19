@@ -86,7 +86,7 @@ namespace SortingUnitTestTest
             int count = 50;
             bool duplicates = false;
             algorithms.CreateRandoms(min, max, count, duplicates);
-            algorithms.QuickSort();
+            algorithms.HeapSort();
             int[] array = algorithms.GetRandoms();
 
             for (int i = 0; i < array.Length - 2; ++i)
