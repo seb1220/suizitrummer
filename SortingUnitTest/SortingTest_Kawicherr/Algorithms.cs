@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SortingTest_Kawicher
         {
             Random rand = new Random();
             if (max - min < 1 || max - min < count)
-                throw new Exception("invalid range: " + min + " - " + max);
+                throw new Exception("invalid range: " + min + ", " + max);
 
             array = new int[count];
             for (int i = 0; i < count; i++)
@@ -48,7 +49,9 @@ namespace SortingTest_Kawicher
 
         public int[] GetRandoms()
         {
-            return array;
+            int[] a = new int[array.Length];
+            array.CopyTo(a, 0);
+            return a;
         }
 
         public void BubbleSort()
@@ -157,15 +160,33 @@ namespace SortingTest_Kawicher
                 t2.Join();
         }
 
-        public int this[int i]
+        public int this[uint i]
         {
             get
             {
                 return array[i];
             }
-            set
+            private set
             {
                 array[i] = value;
+            }
+        }
+
+        public bool this[string element]
+        {
+            get
+            {
+                if (!int.TryParse(element, out int intElement))
+                    return false;
+
+                foreach (int i in array)
+                {
+                    if (intElement == i)
+                        return true;
+                }
+
+                return false;
+                
             }
         }
     }

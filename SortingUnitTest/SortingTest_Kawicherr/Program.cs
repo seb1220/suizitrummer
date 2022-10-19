@@ -16,17 +16,13 @@ namespace SortingTest_Kawicher
             bool duplicates = false;
             algorithms.CreateRandoms(min, max, count, duplicates);
 
-            foreach(int i in algorithms.GetRandoms())
-            {
-                Console.WriteLine(i);
-            }
+            algorithms.Print();
+            
+            Console.WriteLine(algorithms["82"]);
             
             Console.WriteLine("---");
             algorithms.QuickSort();
-            foreach(int i in algorithms.GetRandoms())
-            {
-                Console.WriteLine(i);
-            }
+            algorithms.Print();
         }
     }
 }
