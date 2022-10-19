@@ -13,3 +13,10 @@ C:/Users/sebas/source/repos/suizitrummer/SortingUnitTest/SortingTest_Kawicherr/o
 /home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicherr/obj/Debug/SortingTest_Kawicher.csproj.CoreCompileInputs.cache
 /home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicherr/obj/Debug/SortingTest_Kawicherr.exe
 /home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicherr/obj/Debug/SortingTest_Kawicherr.pdb
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/bin/Debug/SortingTest_Kawicher.exe.config
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/bin/Debug/SortingTest_Kawicher.exe
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/bin/Debug/SortingTest_Kawicher.pdb
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/obj/Debug/SortingTest_Kawicher.csproj.AssemblyReference.cache
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/obj/Debug/SortingTest_Kawicher.csproj.CoreCompileInputs.cache
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/obj/Debug/SortingTest_Kawicher.exe
+/home/dusack/Documents/4alk_reicht_nicht/bos/suizitrummer/SortingUnitTest/SortingTest_Kawicher/obj/Debug/SortingTest_Kawicher.pdb

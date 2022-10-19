@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SortingTest_Kawicherr\SortingTest_Kawicher.csproj">
+    <ProjectReference Include="..\SortingTest_Kawicher\SortingTest_Kawicher.csproj">
       <Project>{dad71f1e-38b2-4ed5-ab58-2f2aa6f29763}</Project>
       <Name>SortingTest_Kawicher</Name>
     </ProjectReference>

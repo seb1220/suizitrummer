@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DAD71F1E-38B2-4ED5-AB58-2F2AA6F29763}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SortingTest_Kawicherr</RootNamespace>
-    <AssemblyName>SortingTest_Kawicherr</AssemblyName>
+    <RootNamespace>SortingTest_Kawicher</RootNamespace>
+    <AssemblyName>SortingTest_Kawicher</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
