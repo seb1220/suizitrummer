@@ -17,7 +17,7 @@ namespace SortingTest_Kawicher
         {
             Random rand = new Random();
             if (max - min < 1 || max - min < count)
-                throw new Exception("invalid range: " + min + ", " + max);
+                throw new AlgoException("invalid range: " + min + ", " + max);
 
             array = new int[count];
             for (int i = 0; i < count; i++)
