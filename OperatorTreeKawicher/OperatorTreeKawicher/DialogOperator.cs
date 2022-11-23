@@ -12,10 +12,16 @@ namespace OperatorTreeKawicher
 {
     public partial class DialogOperator : Form
     {
+        public string symbol = "+";
+
         public DialogOperator()
         {
             InitializeComponent();
         }
 
+        private void cbOperator_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            symbol = cbOperator.SelectedItem.ToString();
+        }
     }
 }

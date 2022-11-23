@@ -12,9 +12,13 @@ namespace OperatorTreeKawicher
 {
     public partial class FrmMain : Form
     {
+        NodeManagement nm;
+        int x;
+        int y;
         public FrmMain()
         {
             InitializeComponent();
+            nm = new NodeManagement();
         }
 
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -26,7 +30,7 @@ namespace OperatorTreeKawicher
         {
             DialogOperator dialogOperator = new DialogOperator();
             if (dialogOperator.ShowDialog() == DialogResult.OK)
-                return;
+                nm.newOperator(x, y, dialogOperator.symbol);
         }
 
         private void cmiOperand_Click(object sender, EventArgs e)
@@ -34,6 +38,15 @@ namespace OperatorTreeKawicher
             DialogOperand dialogOperand = new DialogOperand();
             if (dialogOperand.ShowDialog() == DialogResult.OK)
                 return;
+        }
+
+        private void FrmMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                x = e.X; x = e.X;
+
+
+
         }
     }
 }

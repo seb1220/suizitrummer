@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NodeManagement.cs" />
+    <Compile Include="Operand.cs" />
     <Compile Include="DialogOperand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +67,7 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Node.cs" />
+    <Compile Include="Operator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DialogOperand.resx">

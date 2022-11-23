@@ -47,6 +47,7 @@
             this.cbOperator.Name = "cbOperator";
             this.cbOperator.Size = new System.Drawing.Size(77, 24);
             this.cbOperator.TabIndex = 3;
+            this.cbOperator.SelectedIndexChanged += new System.EventHandler(this.cbOperator_SelectedIndexChanged);
             // 
             // label1
             // 

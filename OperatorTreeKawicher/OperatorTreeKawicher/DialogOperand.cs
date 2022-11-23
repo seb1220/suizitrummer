@@ -22,6 +22,9 @@ namespace OperatorTreeKawicher
             int tmp;
             if (int.TryParse(tbOperand.Text, out tmp)) {
                 butOk.Enabled = true;
+            } else
+            {
+                butOk.Enabled = false;
             }
         }
     }

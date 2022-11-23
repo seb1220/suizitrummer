@@ -127,19 +127,19 @@
             this.cmiOperator,
             this.cmiOperand});
             this.cmMain.Name = "cmMain";
-            this.cmMain.Size = new System.Drawing.Size(211, 80);
+            this.cmMain.Size = new System.Drawing.Size(139, 52);
             // 
             // cmiOperator
             // 
             this.cmiOperator.Name = "cmiOperator";
-            this.cmiOperator.Size = new System.Drawing.Size(210, 24);
+            this.cmiOperator.Size = new System.Drawing.Size(138, 24);
             this.cmiOperator.Text = "Operator";
             this.cmiOperator.Click += new System.EventHandler(this.cmiOperator_Click);
             // 
             // cmiOperand
             // 
             this.cmiOperand.Name = "cmiOperand";
-            this.cmiOperand.Size = new System.Drawing.Size(210, 24);
+            this.cmiOperand.Size = new System.Drawing.Size(138, 24);
             this.cmiOperand.Text = "Operand";
             this.cmiOperand.Click += new System.EventHandler(this.cmiOperand_Click);
             // 
@@ -153,6 +153,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
             this.Text = "Form1";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseClick);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.cmMain.ResumeLayout(false);
