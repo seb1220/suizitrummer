@@ -24,5 +24,10 @@ namespace OperatorTreeKawicher
         {
             return Math.Sqrt((X - x) * (X - x) + (Y - y) * (Y - y)) <= RADIUS;
         }
+
+        public Boolean isNear(int x, int y)
+        {
+            return Math.Sqrt((X - x) * (X - x) + (Y - y) * (Y - y)) <= RADIUS * 2;
+        }
     }
 }

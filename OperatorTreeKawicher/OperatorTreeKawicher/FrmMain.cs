@@ -30,7 +30,10 @@ namespace OperatorTreeKawicher
         {
             DialogOperator dialogOperator = new DialogOperator();
             if (dialogOperator.ShowDialog() == DialogResult.OK)
+            {
                 nm.newOperator(x, y, dialogOperator.symbol);
+                // neu paint ding
+            }
         }
 
         private void cmiOperand_Click(object sender, EventArgs e)
@@ -43,10 +46,16 @@ namespace OperatorTreeKawicher
         private void FrmMain_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
-                x = e.X; x = e.X;
+                x = e.X; y = e.Y;
 
 
+            
+        }
 
+        private void FrmMain_Paint(object sender, PaintEventArgs e)
+        {
+            if (nm != null)
+                nm.paint(e.Graphics);
         }
     }
 }

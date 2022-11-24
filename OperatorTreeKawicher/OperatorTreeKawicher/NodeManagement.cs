@@ -44,5 +44,15 @@ namespace OperatorTreeKawicher
             }
             return null;
         }
+
+        public Boolean isNear(int x, int y)
+        {
+            foreach (Node node in _nodes)
+            {
+                if (node.isIn(x, y))
+                    return true;
+            }
+            return false;
+        }
     }
 }
