@@ -19,7 +19,10 @@ namespace OperatorTreeKawicher
             Symbol = symbol;
         }
 
-
+        public override bool isIn(int x, int y)
+        {
+            return x <= X + RADIUS * 2 && x >= X && y <= Y + RADIUS * 2 && y >= Y;
+        }
 
         public override void paint(Graphics g)
         {
@@ -30,7 +33,7 @@ namespace OperatorTreeKawicher
 
             // Draw string to screen.
             g.DrawString(Symbol, drawFont, drawBrush, X + RADIUS - size.Width / 2, Y + RADIUS - size.Height / 2);
-            g.DrawRectangle(new Pen(Color.Aqua, 1), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
+            g.DrawRectangle(new Pen(Color.Aqua, 2), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
         }
     }
 }

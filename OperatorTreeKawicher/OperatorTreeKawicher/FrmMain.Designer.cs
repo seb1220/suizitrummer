@@ -155,6 +155,8 @@
             this.Text = "OperatorTree";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmMain_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.cmMain.ResumeLayout(false);

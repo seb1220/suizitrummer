@@ -15,6 +15,11 @@ namespace OperatorTreeKawicher
             Number = number;
         }
 
+        public override bool isIn(int x, int y)
+        {
+            return Math.Sqrt((X + RADIUS - x) * (X + RADIUS - x) + (Y + RADIUS - y) * (Y + RADIUS - y)) <= RADIUS;
+        }
+
         public override void paint(Graphics g)
         {
             // Create font and brush.
@@ -24,7 +29,7 @@ namespace OperatorTreeKawicher
 
             // Draw string to screen.
             g.DrawString(Number.ToString(), drawFont, drawBrush, X + RADIUS - size.Width / 2, Y + RADIUS - size.Height / 2);
-            g.DrawEllipse(new Pen(Color.Fuchsia, 1), new Rectangle(X, Y, Node.RADIUS * 2 , Node.RADIUS * 2));
+            g.DrawEllipse(new Pen(Color.Fuchsia, 2), new Rectangle(X, Y, Node.RADIUS * 2 , Node.RADIUS * 2));
         }
     }
 }

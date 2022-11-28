@@ -10,8 +10,8 @@ namespace OperatorTreeKawicher
     internal abstract class Node
     {
         protected const int RADIUS = 20;
-        protected int X { get; set; }
-        protected int Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         protected Node(int x, int y)
         {
@@ -20,14 +20,11 @@ namespace OperatorTreeKawicher
         }
 
         abstract public void paint(Graphics g);
-        public Boolean isIn(int x, int y)
-        {
-            return Math.Sqrt((X - x) * (X - x) + (Y - y) * (Y - y)) <= RADIUS;
-        }
+        abstract public Boolean isIn(int x, int y);
 
         public Boolean isNear(int x, int y)
         {
-            return Math.Sqrt((X - x) * (X - x) + (Y - y) * (Y - y)) <= RADIUS * 2;
+            return Math.Sqrt((X + RADIUS - x) * (X + RADIUS - x) + (Y + RADIUS - y) * (Y + RADIUS - y)) <= RADIUS * 3;
         }
     }
 }
