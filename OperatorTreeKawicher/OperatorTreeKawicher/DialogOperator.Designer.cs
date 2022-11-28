@@ -46,8 +46,7 @@
             this.cbOperator.Location = new System.Drawing.Point(121, 12);
             this.cbOperator.Name = "cbOperator";
             this.cbOperator.Size = new System.Drawing.Size(77, 24);
-            this.cbOperator.TabIndex = 3;
-            this.cbOperator.SelectedIndexChanged += new System.EventHandler(this.cbOperator_SelectedIndexChanged);
+            this.cbOperator.TabIndex = 1;
             // 
             // label1
             // 
@@ -61,18 +60,19 @@
             // butCancel
             // 
             this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.butCancel.Location = new System.Drawing.Point(15, 52);
+            this.butCancel.Location = new System.Drawing.Point(12, 52);
             this.butCancel.Name = "butCancel";
-            this.butCancel.Size = new System.Drawing.Size(81, 23);
+            this.butCancel.Size = new System.Drawing.Size(81, 31);
             this.butCancel.TabIndex = 2;
             this.butCancel.Text = "Cancel";
             this.butCancel.UseVisualStyleBackColor = true;
             // 
             // butOk
             // 
-            this.butOk.Location = new System.Drawing.Point(102, 52);
+            this.butOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.butOk.Location = new System.Drawing.Point(103, 52);
             this.butOk.Name = "butOk";
-            this.butOk.Size = new System.Drawing.Size(95, 22);
+            this.butOk.Size = new System.Drawing.Size(95, 31);
             this.butOk.TabIndex = 3;
             this.butOk.Text = "Okay";
             this.butOk.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.butCancel;
-            this.ClientSize = new System.Drawing.Size(210, 89);
+            this.ClientSize = new System.Drawing.Size(210, 95);
             this.ControlBox = false;
             this.Controls.Add(this.butOk);
             this.Controls.Add(this.butCancel);
@@ -91,6 +91,7 @@
             this.Controls.Add(this.cbOperator);
             this.Name = "DialogOperator";
             this.Text = "New Operator";
+            this.Load += new System.EventHandler(this.DialogOperator_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

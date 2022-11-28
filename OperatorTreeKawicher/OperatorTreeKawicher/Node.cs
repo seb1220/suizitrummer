@@ -9,7 +9,7 @@ namespace OperatorTreeKawicher
 {
     internal abstract class Node
     {
-        protected const int RADIUS = 15;
+        protected const int RADIUS = 20;
         protected int X { get; set; }
         protected int Y { get; set; }
 

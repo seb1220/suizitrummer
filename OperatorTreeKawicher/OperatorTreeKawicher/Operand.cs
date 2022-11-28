@@ -18,16 +18,13 @@ namespace OperatorTreeKawicher
         public override void paint(Graphics g)
         {
             // Create font and brush.
-            Font drawFont = new Font("Arial", 16);
+            Font drawFont = new Font("Arial", 8);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
-
-            // Set format of string.
-            StringFormat drawFormat = new StringFormat();
-            drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
+            SizeF size = g.MeasureString(Number.ToString(), drawFont);
 
             // Draw string to screen.
-            g.DrawString(Number.ToString(), drawFont, drawBrush, X, Y, drawFormat);
-            g.DrawEllipse(new Pen(Color.Red, 7), new Rectangle(X, Y, Node.RADIUS, Node.RADIUS));
+            g.DrawString(Number.ToString(), drawFont, drawBrush, X + RADIUS - size.Width / 2, Y + RADIUS - size.Height / 2);
+            g.DrawEllipse(new Pen(Color.Fuchsia, 1), new Rectangle(X, Y, Node.RADIUS * 2 , Node.RADIUS * 2));
         }
     }
 }

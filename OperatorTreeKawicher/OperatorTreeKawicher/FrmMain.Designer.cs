@@ -152,9 +152,9 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "OperatorTree";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmMain_Paint);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.cmMain.ResumeLayout(false);

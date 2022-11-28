@@ -36,19 +36,21 @@
             // 
             // butOk
             // 
+            this.butOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.butOk.Enabled = false;
             this.butOk.Location = new System.Drawing.Point(179, 66);
             this.butOk.Name = "butOk";
-            this.butOk.Size = new System.Drawing.Size(158, 23);
+            this.butOk.Size = new System.Drawing.Size(158, 30);
             this.butOk.TabIndex = 0;
             this.butOk.Text = "Okay";
             this.butOk.UseVisualStyleBackColor = true;
             // 
             // butCancel
             // 
+            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butCancel.Location = new System.Drawing.Point(12, 66);
             this.butCancel.Name = "butCancel";
-            this.butCancel.Size = new System.Drawing.Size(152, 23);
+            this.butCancel.Size = new System.Drawing.Size(152, 30);
             this.butCancel.TabIndex = 1;
             this.butCancel.Text = "Cancel";
             this.butCancel.UseVisualStyleBackColor = true;
@@ -76,7 +78,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.butCancel;
-            this.ClientSize = new System.Drawing.Size(349, 98);
+            this.ClientSize = new System.Drawing.Size(349, 108);
             this.ControlBox = false;
             this.Controls.Add(this.tbOperand);
             this.Controls.Add(this.label1);

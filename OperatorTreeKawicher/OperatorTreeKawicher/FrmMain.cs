@@ -13,8 +13,9 @@ namespace OperatorTreeKawicher
     public partial class FrmMain : Form
     {
         NodeManagement nm;
-        int x;
-        int y;
+        int x = 0;
+        int y = 0;
+        Boolean move = false;
         public FrmMain()
         {
             InitializeComponent();
@@ -31,8 +32,8 @@ namespace OperatorTreeKawicher
             DialogOperator dialogOperator = new DialogOperator();
             if (dialogOperator.ShowDialog() == DialogResult.OK)
             {
-                nm.newOperator(x, y, dialogOperator.symbol);
-                // neu paint ding
+                nm.newOperator(x, y, dialogOperator.Symbol);
+                Invalidate();
             }
         }
 
@@ -40,22 +41,26 @@ namespace OperatorTreeKawicher
         {
             DialogOperand dialogOperand = new DialogOperand();
             if (dialogOperand.ShowDialog() == DialogResult.OK)
-                return;
-        }
-
-        private void FrmMain_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-                x = e.X; y = e.Y;
-
-
-            
+            {
+                nm.newOperand(x, y, dialogOperand.Number);
+                Invalidate();
+            }
         }
 
         private void FrmMain_Paint(object sender, PaintEventArgs e)
         {
             if (nm != null)
                 nm.paint(e.Graphics);
+        }
+
+        private void FrmMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+
+            if (e.Button == MouseButtons.Left && Control.ModifierKeys == Keys.Control)
+            {
+                move = true;
+            }
         }
     }
 }

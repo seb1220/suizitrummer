@@ -17,6 +17,10 @@ namespace OperatorTreeKawicher
             InitializeComponent();
         }
 
+        public int Number {
+            get { return int.Parse(tbOperand.Text); }
+        }
+
         private void tbOperand_TextChanged(object sender, EventArgs e)
         {
             int tmp;
