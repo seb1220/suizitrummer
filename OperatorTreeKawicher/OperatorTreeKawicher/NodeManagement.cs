@@ -49,7 +49,7 @@ namespace OperatorTreeKawicher
         {
             foreach (Node node in _nodes)
             {
-                if (node.isIn(x, y))
+                if (node.isNear(x, y))
                     return true;
             }
             return false;

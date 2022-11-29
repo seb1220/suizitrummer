@@ -13,6 +13,9 @@ namespace OperatorTreeKawicher
         public int X { get; set; }
         public int Y { get; set; }
 
+        public int Mx { get { return X + RADIUS; } }
+        public int My { get { return Y + RADIUS; } }
+
         protected Node(int x, int y)
         {
             X = x;
@@ -24,7 +27,7 @@ namespace OperatorTreeKawicher
 
         public Boolean isNear(int x, int y)
         {
-            return Math.Sqrt((X + RADIUS - x) * (X + RADIUS - x) + (Y + RADIUS - y) * (Y + RADIUS - y)) <= RADIUS * 3;
+            return Math.Sqrt((Mx - x) * (Mx - x) + (My - y) * (My - y)) <= RADIUS * 3;
         }
     }
 }

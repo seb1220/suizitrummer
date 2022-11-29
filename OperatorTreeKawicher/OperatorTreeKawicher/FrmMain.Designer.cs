@@ -150,6 +150,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ContextMenuStrip = this.cmMain;
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
             this.Text = "OperatorTree";
