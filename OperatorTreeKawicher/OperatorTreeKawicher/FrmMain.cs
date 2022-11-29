@@ -19,7 +19,7 @@ namespace OperatorTreeKawicher
         int dx;
         int dy;
         Node move = null;
-        Node conn = null;
+        Operator conn = null;
         public FrmMain()
         {
             InitializeComponent();
@@ -62,9 +62,9 @@ namespace OperatorTreeKawicher
                 dx = x - move.X;
                 dy = y - move.Y;
             } else if (e.Button == MouseButtons.Left && nm.isIn(e.X, e.Y) != null
-                && GetType(nm.isIn(e.X, e.Y)) == GetType(Operator))
+                && nm.isIn(e.X, e.Y).GetType() == typeof(Operator))
             {
-                conn = nm.isIn(e.X, e.Y);
+                conn = (Operator) nm.isIn(e.X, e.Y);
             }
         }
 
@@ -89,10 +89,12 @@ namespace OperatorTreeKawicher
             if (conn != null)
             {
                 if (nm.isIn(e.X, e.Y) != null) {
-                    if (conn.My > nm.isIn(e.X, e.Y).My)
+                    if (conn.My < nm.isIn(e.X, e.Y).My)
                     {
                         if (conn.Mx > nm.isIn(e.X, e.Y).Mx)
                             conn.Left = nm.isIn(e.X, e.Y);
+                        else if (conn.Mx < nm.isIn(e.X, e.Y).Mx)
+                            conn.Right = nm.isIn(e.X, e.Y);
                     }
 
                 }
@@ -105,9 +107,9 @@ namespace OperatorTreeKawicher
         {
             if (nm != null)
             {
-                nm.paint(e.Graphics);
                 if (conn != null)
                     e.Graphics.DrawLine(new Pen(Color.DeepSkyBlue, 2), conn.Mx, conn.My, x, y);
+                nm.paint(e.Graphics);
             }
         }
     }

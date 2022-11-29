@@ -31,6 +31,11 @@ namespace OperatorTreeKawicher
         {
             foreach (Node node in _nodes)
             {
+                if (node.GetType() == typeof(Operator))
+                    ((Operator) node).paintConn(g);
+            }
+            foreach (Node node in _nodes)
+            {
                 node.paint(g);
             }
         }

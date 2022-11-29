@@ -19,6 +19,14 @@ namespace OperatorTreeKawicher
             Symbol = symbol;
         }
 
+        public void paintConn(Graphics g)
+        {
+            if (Left != null)
+                g.DrawLine(new Pen(Color.DeepSkyBlue, 2), Mx, My, Left.Mx, Left.My);
+            if (Right != null)
+                g.DrawLine(new Pen(Color.DeepSkyBlue, 2), Mx, My, Right.Mx, Right.My);
+        }
+
         public override bool isIn(int x, int y)
         {
             return x <= X + RADIUS * 2 && x >= X && y <= Y + RADIUS * 2 && y >= Y;
