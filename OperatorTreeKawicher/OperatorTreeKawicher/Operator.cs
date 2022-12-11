@@ -10,13 +10,20 @@ namespace OperatorTreeKawicher
 {
     internal class Operator : Node
     {
-        string Symbol { set; get; }
+        public string Symbol { private set; get; }
         public Node Left { set; get; }
         public Node Right { set; get; }
 
         public Operator(int x, int y, string symbol) : base(x, y)
         {
             Symbol = symbol;
+        }
+
+        public Boolean isValid()
+        {
+            if (Left == null || Right == null)
+                return false;
+            return true;
         }
 
         public void paintConn(Graphics g)

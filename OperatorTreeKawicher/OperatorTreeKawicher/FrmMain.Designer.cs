@@ -42,6 +42,13 @@
             this.cmMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmiOperator = new System.Windows.Forms.ToolStripMenuItem();
             this.cmiOperand = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblValid = new System.Windows.Forms.Label();
+            this.lblPrefixTitle = new System.Windows.Forms.Label();
+            this.lblInfixTitle = new System.Windows.Forms.Label();
+            this.lblPostfixTitle = new System.Windows.Forms.Label();
+            this.lblPrefix = new System.Windows.Forms.Label();
+            this.lblInfix = new System.Windows.Forms.Label();
+            this.lblPostfix = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.cmMain.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +61,7 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,7 +75,7 @@
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -110,7 +117,7 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.animationToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
@@ -143,12 +150,96 @@
             this.cmiOperand.Text = "Operand";
             this.cmiOperand.Click += new System.EventHandler(this.cmiOperand_Click);
             // 
+            // lblValid
+            // 
+            this.lblValid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblValid.AutoSize = true;
+            this.lblValid.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblValid.Location = new System.Drawing.Point(13, 282);
+            this.lblValid.Name = "lblValid";
+            this.lblValid.Size = new System.Drawing.Size(65, 23);
+            this.lblValid.TabIndex = 1;
+            this.lblValid.Text = "Invalid";
+            // 
+            // lblPrefixTitle
+            // 
+            this.lblPrefixTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPrefixTitle.AutoSize = true;
+            this.lblPrefixTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrefixTitle.Location = new System.Drawing.Point(12, 336);
+            this.lblPrefixTitle.Name = "lblPrefixTitle";
+            this.lblPrefixTitle.Size = new System.Drawing.Size(58, 23);
+            this.lblPrefixTitle.TabIndex = 2;
+            this.lblPrefixTitle.Text = "prefix";
+            // 
+            // lblInfixTitle
+            // 
+            this.lblInfixTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblInfixTitle.AutoSize = true;
+            this.lblInfixTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfixTitle.Location = new System.Drawing.Point(12, 359);
+            this.lblInfixTitle.Name = "lblInfixTitle";
+            this.lblInfixTitle.Size = new System.Drawing.Size(43, 23);
+            this.lblInfixTitle.TabIndex = 3;
+            this.lblInfixTitle.Text = "infix";
+            // 
+            // lblPostfixTitle
+            // 
+            this.lblPostfixTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPostfixTitle.AutoSize = true;
+            this.lblPostfixTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPostfixTitle.Location = new System.Drawing.Point(12, 382);
+            this.lblPostfixTitle.Name = "lblPostfixTitle";
+            this.lblPostfixTitle.Size = new System.Drawing.Size(67, 23);
+            this.lblPostfixTitle.TabIndex = 4;
+            this.lblPostfixTitle.Text = "postfix";
+            // 
+            // lblPrefix
+            // 
+            this.lblPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPrefix.AutoSize = true;
+            this.lblPrefix.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrefix.Location = new System.Drawing.Point(85, 336);
+            this.lblPrefix.Name = "lblPrefix";
+            this.lblPrefix.Size = new System.Drawing.Size(43, 23);
+            this.lblPrefix.TabIndex = 5;
+            this.lblPrefix.Text = "tmp";
+            // 
+            // lblInfix
+            // 
+            this.lblInfix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblInfix.AutoSize = true;
+            this.lblInfix.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfix.Location = new System.Drawing.Point(85, 359);
+            this.lblInfix.Name = "lblInfix";
+            this.lblInfix.Size = new System.Drawing.Size(43, 23);
+            this.lblInfix.TabIndex = 6;
+            this.lblInfix.Text = "tmp";
+            // 
+            // lblPostfix
+            // 
+            this.lblPostfix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPostfix.AutoSize = true;
+            this.lblPostfix.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPostfix.Location = new System.Drawing.Point(85, 382);
+            this.lblPostfix.Name = "lblPostfix";
+            this.lblPostfix.Size = new System.Drawing.Size(43, 23);
+            this.lblPostfix.TabIndex = 7;
+            this.lblPostfix.Text = "tmp";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ContextMenuStrip = this.cmMain;
+            this.Controls.Add(this.lblPostfix);
+            this.Controls.Add(this.lblInfix);
+            this.Controls.Add(this.lblPrefix);
+            this.Controls.Add(this.lblPostfixTitle);
+            this.Controls.Add(this.lblInfixTitle);
+            this.Controls.Add(this.lblPrefixTitle);
+            this.Controls.Add(this.lblValid);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -181,6 +272,13 @@
         private System.Windows.Forms.ContextMenuStrip cmMain;
         private System.Windows.Forms.ToolStripMenuItem cmiOperator;
         private System.Windows.Forms.ToolStripMenuItem cmiOperand;
+        private System.Windows.Forms.Label lblValid;
+        private System.Windows.Forms.Label lblPrefixTitle;
+        private System.Windows.Forms.Label lblInfixTitle;
+        private System.Windows.Forms.Label lblPostfixTitle;
+        private System.Windows.Forms.Label lblPrefix;
+        private System.Windows.Forms.Label lblInfix;
+        private System.Windows.Forms.Label lblPostfix;
     }
 }
 

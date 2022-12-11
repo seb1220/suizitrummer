@@ -91,7 +91,6 @@
             this.Controls.Add(this.cbOperator);
             this.Name = "DialogOperator";
             this.Text = "New Operator";
-            this.Load += new System.EventHandler(this.DialogOperator_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

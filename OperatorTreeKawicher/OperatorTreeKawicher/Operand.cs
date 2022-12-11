@@ -9,7 +9,7 @@ namespace OperatorTreeKawicher
 {
     internal class Operand : Node
     {
-        int Number { get; set; }
+        public int Number { get; private set; }
         public Operand(int x, int y, int number) : base(x, y)
         {
             Number = number;

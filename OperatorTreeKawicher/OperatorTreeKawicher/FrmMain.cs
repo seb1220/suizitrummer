@@ -105,12 +105,18 @@ namespace OperatorTreeKawicher
 
         private void FrmMain_Paint(object sender, PaintEventArgs e)
         {
-            if (nm != null)
-            {
-                if (conn != null)
-                    e.Graphics.DrawLine(new Pen(Color.DeepSkyBlue, 2), conn.Mx, conn.My, x, y);
-                nm.paint(e.Graphics);
-            }
+            if (conn != null)
+                e.Graphics.DrawLine(new Pen(Color.DeepSkyBlue, 2), conn.Mx, conn.My, x, y);
+            nm.paint(e.Graphics);
+
+            if (nm.isValid())
+                lblValid.Text = "Valid";
+            else
+                lblValid.Text = "Invalid";
+
+            lblPrefix.Text = nm.getPrefix();
+            lblInfix.Text = nm.getInfix();
+            lblPostfix.Text = nm.getPostfix();
         }
     }
 }

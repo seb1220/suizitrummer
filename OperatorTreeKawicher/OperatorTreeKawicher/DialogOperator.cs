@@ -20,11 +20,7 @@ namespace OperatorTreeKawicher
         public DialogOperator()
         {
             InitializeComponent();
-        }
-
-        private void DialogOperator_Load(object sender, EventArgs e)
-        {
-
+            cbOperator.SelectedIndex = 0;
         }
     }
 }

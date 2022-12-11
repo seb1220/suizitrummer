@@ -59,5 +59,149 @@ namespace OperatorTreeKawicher
             }
             return false;
         }
+
+        public Boolean isValid()
+        {
+            if (_nodes.Count == 0)
+                return false;
+
+            foreach (Node node in _nodes)
+            {
+                if (node.GetType() == typeof(Operator))
+                {
+                    if (((Operator)node).isValid() == false)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        private Operator getRoot()
+        {
+            if (this.isValid() == false)
+                return null;
+
+            List<Operator> operators = new List<Operator>();
+            foreach (Node node in _nodes)
+            {
+                if (node.GetType() == typeof(Operator))
+                {
+                    if (((Operator)node).Left == null && ((Operator)node).Left.GetType() == typeof(Operator))
+                        operators.Add((Operator)((Operator)node).Left);
+                    if (((Operator)node).Right == null && ((Operator)node).Right.GetType() == typeof(Operator))
+                        operators.Add((Operator)((Operator)node).Right);
+                }
+            }
+            foreach (Node node in _nodes)
+            {
+                if (node.GetType() == typeof(Operator))
+                {
+                    if (operators.Contains((Operator)node) == false)
+                        return (Operator)node;
+                }
+            }
+            return null;
+        }
+
+        public String getPrefix()
+        {
+            if (isValid() == false)
+                return "Invalid Tree";
+
+            Operator root = this.getRoot();
+            String prefix = "";
+            //return "ah";
+            return constructPrefix(prefix, root);
+        }
+
+        private String constructPrefix(String prefix, Operator op)
+        {
+            prefix += op.Symbol + " ";
+            
+            if (op.Left != null)
+            {
+                if (op.Left.GetType() == typeof(Operator))
+                    prefix = constructPrefix(prefix, (Operator)op.Left);
+                else if (op.Left.GetType() == typeof(Operand))
+                    prefix += ((Operand)op.Left).Number + " ";
+            }
+            if (op.Right != null)
+            {
+                if (op.Right.GetType() == typeof(Operator))
+                    prefix = constructPrefix(prefix, (Operator)op.Right);
+                else if (op.Right.GetType() == typeof(Operand))
+                    prefix += ((Operand)op.Right).Number + " ";
+            }
+            
+            return prefix;
+        }
+
+        public String getInfix()
+        {
+            if (isValid() == false)
+                return "Invalid Tree";
+
+            Operator root = this.getRoot();
+            String prefix = "";
+
+            return constructInfix(prefix, root);
+        }
+
+        private String constructInfix(String infix, Operator op)
+        {
+            if (op.Left != null)
+            {
+                if (op.Left.GetType() == typeof(Operator))
+                    infix = constructInfix(infix, (Operator)op.Left);
+                else if (op.Left.GetType() == typeof(Operand))
+                    infix += "(" + ((Operand)op.Left).Number + " ";
+            }
+            infix += op.Symbol + " ";
+            if (op.Right != null)
+            {
+                if (op.Right.GetType() == typeof(Operator))
+                    infix = constructInfix(infix, (Operator)op.Right);
+                else if (op.Right.GetType() == typeof(Operand))
+                    infix += ((Operand)op.Right).Number + ") ";
+            }
+            return infix;
+        }
+
+        public String getPostfix()
+        {
+            if (isValid() == false)
+                return "Invalid Tree";
+
+            Operator root = this.getRoot();
+            String prefix = "";
+            
+            return constructPostfix(prefix, root);
+        }
+
+        private String constructPostfix(String postfix, Operator op)
+        {
+            if (op.Left != null)
+            {
+                if (op.Left.GetType() == typeof(Operator))
+                    postfix = constructPostfix(postfix, (Operator)op.Left);
+                else if (op.Left.GetType() == typeof(Operand))
+                    postfix += ((Operand)op.Left).Number + " ";
+            }
+            if (op.Right != null)
+            {
+                if (op.Right.GetType() == typeof(Operator))
+                    postfix = constructPostfix(postfix, (Operator)op.Right);
+                else if (op.Right.GetType() == typeof(Operand))
+                    postfix += ((Operand)op.Right).Number + " ";
+            }
+            postfix += op.Symbol + " ";
+            return postfix;
+        }
+
+        public void clear()
+        {
+            _nodes.Clear();
+        }
+
     }
 }
