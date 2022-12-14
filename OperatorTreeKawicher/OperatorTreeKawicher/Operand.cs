@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OperatorTreeKawicher
 {
+    [Serializable]
     internal class Operand : Node
     {
         public int Number { get; private set; }

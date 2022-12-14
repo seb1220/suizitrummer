@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -106,7 +108,7 @@ namespace OperatorTreeKawicher
         private void FrmMain_Paint(object sender, PaintEventArgs e)
         {
             if (conn != null)
-                e.Graphics.DrawLine(new Pen(Color.DeepSkyBlue, 2), conn.Mx, conn.My, x, y);
+                e.Graphics.DrawLine(new Pen(Color.Salmon, 2), conn.Mx, conn.My, x, y);
             nm.paint(e.Graphics);
 
             if (nm.isValid())
@@ -117,6 +119,52 @@ namespace OperatorTreeKawicher
             lblPrefix.Text = nm.getPrefix();
             lblInfix.Text = nm.getInfix();
             lblPostfix.Text = nm.getPostfix();
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nm.clear();
+            Invalidate();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Binary File *.bin|*.bin";
+            openFileDialog.InitialDirectory = @"C:\Temp";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                nm = (NodeManagement)formatter.Deserialize(stream);
+                stream.Close();
+                Invalidate();
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Binary File *.bin|*.bin";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, nm);
+                stream.Close();
+            }
+        }
+
+        private void animationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: placement zeug fixen, dann delegates, dann animantion in NodeManagement
+            AnimationDialog animationDialog = new AnimationDialog();
+            animationDialog.Show();
         }
     }
 }

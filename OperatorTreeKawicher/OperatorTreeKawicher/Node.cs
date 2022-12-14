@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OperatorTreeKawicher
 {
+    [Serializable]
     internal abstract class Node
     {
         protected const int RADIUS = 20;

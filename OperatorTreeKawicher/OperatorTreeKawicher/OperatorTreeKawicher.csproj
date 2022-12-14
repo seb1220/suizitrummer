@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnimationDialog.Designer.cs">
+      <DependentUpon>AnimationDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="NodeManagement.cs" />
     <Compile Include="Operand.cs" />
     <Compile Include="DialogOperand.cs">
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DialogOperator.resx">
       <DependentUpon>DialogOperator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnimationDialog.resx">
+      <DependentUpon>AnimationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

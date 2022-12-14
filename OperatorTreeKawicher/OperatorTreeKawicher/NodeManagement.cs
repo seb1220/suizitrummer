@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace OperatorTreeKawicher
 {
+    [Serializable]
     internal class NodeManagement
     {
         List<Node> _nodes;

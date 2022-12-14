@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace OperatorTreeKawicher
 {
+    [Serializable]
     internal class Operator : Node
     {
         public string Symbol { private set; get; }
@@ -29,9 +30,9 @@ namespace OperatorTreeKawicher
         public void paintConn(Graphics g)
         {
             if (Left != null)
-                g.DrawLine(new Pen(Color.DeepSkyBlue, 2), Mx, My, Left.Mx, Left.My);
+                g.DrawLine(new Pen(Color.Salmon, 2), Mx, My, Left.Mx, Left.My);
             if (Right != null)
-                g.DrawLine(new Pen(Color.DeepSkyBlue, 2), Mx, My, Right.Mx, Right.My);
+                g.DrawLine(new Pen(Color.Salmon, 2), Mx, My, Right.Mx, Right.My);
         }
 
         public override bool isIn(int x, int y)
