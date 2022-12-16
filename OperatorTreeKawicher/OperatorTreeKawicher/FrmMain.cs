@@ -13,9 +13,16 @@ using System.Windows.Forms;
 
 namespace OperatorTreeKawicher
 {
+    public enum AnimationType
+    {
+        Prefix,
+        Infix,
+        Postfix
+    }
     public partial class FrmMain : Form
     {
         NodeManagement nm;
+        AnimationDialog animationDialog;
         int x = 0;
         int y = 0;
         int dx;
@@ -26,11 +33,8 @@ namespace OperatorTreeKawicher
         {
             InitializeComponent();
             nm = new NodeManagement();
-        }
-
-        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            animationDialog = new AnimationDialog();
+            animationDialog.runAnimationHandler += animate;
         }
 
         private void cmiOperator_Click(object sender, EventArgs e)
@@ -162,9 +166,26 @@ namespace OperatorTreeKawicher
 
         private void animationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: placement zeug fixen, dann delegates, dann animantion in NodeManagement
-            AnimationDialog animationDialog = new AnimationDialog();
+            // TODO: ein/ausblenden
+            
+            moveAnitmationDialog();
             animationDialog.Show();
+        }
+
+        private void FrmMain_Move(object sender, EventArgs e)
+        {
+            moveAnitmationDialog();
+        }
+
+        private void moveAnitmationDialog()
+        {
+            animationDialog.Location = new Point(this.Location.X + this.Width - 10, this.Location.Y + this.Height / 2 - animationDialog.Height / 2);
+        }
+
+        private void animate(AnimationType type)
+        {
+            // TODO: animation
+            return;
         }
     }
 }

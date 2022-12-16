@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.gbMethod = new System.Windows.Forms.GroupBox();
-            this.butRun = new System.Windows.Forms.Button();
-            this.cbPrefix = new System.Windows.Forms.CheckBox();
-            this.cbInfix = new System.Windows.Forms.CheckBox();
             this.cbPostfix = new System.Windows.Forms.CheckBox();
+            this.cbInfix = new System.Windows.Forms.CheckBox();
+            this.cbPrefix = new System.Windows.Forms.CheckBox();
+            this.butRun = new System.Windows.Forms.Button();
             this.gbMethod.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,24 +48,16 @@
             this.gbMethod.TabStop = false;
             this.gbMethod.Text = "Method";
             // 
-            // butRun
+            // cbPostfix
             // 
-            this.butRun.Location = new System.Drawing.Point(12, 118);
-            this.butRun.Name = "butRun";
-            this.butRun.Size = new System.Drawing.Size(156, 33);
-            this.butRun.TabIndex = 2;
-            this.butRun.Text = "Run";
-            this.butRun.UseVisualStyleBackColor = true;
-            // 
-            // cbPrefix
-            // 
-            this.cbPrefix.AutoSize = true;
-            this.cbPrefix.Location = new System.Drawing.Point(6, 21);
-            this.cbPrefix.Name = "cbPrefix";
-            this.cbPrefix.Size = new System.Drawing.Size(61, 20);
-            this.cbPrefix.TabIndex = 0;
-            this.cbPrefix.Text = "prefix";
-            this.cbPrefix.UseVisualStyleBackColor = true;
+            this.cbPostfix.AutoSize = true;
+            this.cbPostfix.Location = new System.Drawing.Point(7, 75);
+            this.cbPostfix.Name = "cbPostfix";
+            this.cbPostfix.Size = new System.Drawing.Size(67, 20);
+            this.cbPostfix.TabIndex = 2;
+            this.cbPostfix.Text = "postfix";
+            this.cbPostfix.UseVisualStyleBackColor = true;
+            this.cbPostfix.CheckedChanged += new System.EventHandler(this.cbPostfix_CheckedChanged);
             // 
             // cbInfix
             // 
@@ -76,16 +68,29 @@
             this.cbInfix.TabIndex = 1;
             this.cbInfix.Text = "infix";
             this.cbInfix.UseVisualStyleBackColor = true;
+            this.cbInfix.CheckedChanged += new System.EventHandler(this.cbInfix_CheckedChanged);
             // 
-            // cbPostfix
+            // cbPrefix
             // 
-            this.cbPostfix.AutoSize = true;
-            this.cbPostfix.Location = new System.Drawing.Point(7, 75);
-            this.cbPostfix.Name = "cbPostfix";
-            this.cbPostfix.Size = new System.Drawing.Size(67, 20);
-            this.cbPostfix.TabIndex = 2;
-            this.cbPostfix.Text = "postfix";
-            this.cbPostfix.UseVisualStyleBackColor = true;
+            this.cbPrefix.AutoSize = true;
+            this.cbPrefix.Checked = true;
+            this.cbPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPrefix.Location = new System.Drawing.Point(6, 21);
+            this.cbPrefix.Name = "cbPrefix";
+            this.cbPrefix.Size = new System.Drawing.Size(61, 20);
+            this.cbPrefix.TabIndex = 0;
+            this.cbPrefix.Text = "prefix";
+            this.cbPrefix.UseVisualStyleBackColor = true;
+            this.cbPrefix.CheckedChanged += new System.EventHandler(this.cbPrefix_CheckedChanged);
+            // 
+            // butRun
+            // 
+            this.butRun.Location = new System.Drawing.Point(12, 118);
+            this.butRun.Name = "butRun";
+            this.butRun.Size = new System.Drawing.Size(156, 33);
+            this.butRun.TabIndex = 2;
+            this.butRun.Text = "Run";
+            this.butRun.UseVisualStyleBackColor = true;
             // 
             // AnimationDialog
             // 
@@ -98,7 +103,9 @@
             this.Name = "AnimationDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Animation";
+            this.Load += new System.EventHandler(this.AnimationDialog_Load);
             this.gbMethod.ResumeLayout(false);
             this.gbMethod.PerformLayout();
             this.ResumeLayout(false);
