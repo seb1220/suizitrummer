@@ -51,7 +51,7 @@
             this.butCancel.Location = new System.Drawing.Point(12, 66);
             this.butCancel.Name = "butCancel";
             this.butCancel.Size = new System.Drawing.Size(152, 30);
-            this.butCancel.TabIndex = 1;
+            this.butCancel.TabIndex = 2;
             this.butCancel.Text = "Cancel";
             this.butCancel.UseVisualStyleBackColor = true;
             // 
@@ -69,7 +69,7 @@
             this.tbOperand.Location = new System.Drawing.Point(78, 27);
             this.tbOperand.Name = "tbOperand";
             this.tbOperand.Size = new System.Drawing.Size(259, 22);
-            this.tbOperand.TabIndex = 3;
+            this.tbOperand.TabIndex = 2;
             this.tbOperand.TextChanged += new System.EventHandler(this.tbOperand_TextChanged);
             // 
             // DialogOperand

@@ -63,7 +63,7 @@ namespace OperatorTreeKawicher
 
         public Boolean isValid()
         {
-            if (_nodes.Count == 0)
+            if (_nodes.FindAll(node => node.GetType() == typeof(Operator)).Count == 0)
                 return false;
 
             foreach (Node node in _nodes)
@@ -203,6 +203,8 @@ namespace OperatorTreeKawicher
         {
             _nodes.Clear();
         }
+
+        //public void animatePrefix
 
     }
 }

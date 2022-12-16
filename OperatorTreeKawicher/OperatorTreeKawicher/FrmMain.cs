@@ -166,10 +166,13 @@ namespace OperatorTreeKawicher
 
         private void animationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: ein/ausblenden
-            
-            moveAnitmationDialog();
-            animationDialog.Show();
+            if (animationDialog.Visible)
+                animationDialog.Hide();
+            else
+            {
+                moveAnitmationDialog();
+                animationDialog.Show();
+            }
         }
 
         private void FrmMain_Move(object sender, EventArgs e)
@@ -185,6 +188,7 @@ namespace OperatorTreeKawicher
         private void animate(AnimationType type)
         {
             // TODO: animation
+            
             return;
         }
     }
