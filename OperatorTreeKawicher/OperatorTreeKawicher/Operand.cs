@@ -11,7 +11,7 @@ namespace OperatorTreeKawicher
     internal class Operand : Node
     {
         public int Number { get; private set; }
-        public Operand(int x, int y, int number) : base(x, y)
+        public Operand(int x, int y, int number) : base(x - RADIUS, y - RADIUS)
         {
             Number = number;
         }

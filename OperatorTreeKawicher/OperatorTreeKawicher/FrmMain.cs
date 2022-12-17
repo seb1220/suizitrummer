@@ -213,7 +213,7 @@ namespace OperatorTreeKawicher
 
         private void moveAnitmationDialog()
         {
-            animationDialog.Location = new Point(this.Location.X + this.Width - 10, this.Location.Y + this.Height / 2 - animationDialog.Height / 2);
+            animationDialog.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y + this.Height / 2 - animationDialog.Height / 2);
         }
 
         private void animate(AnimationType type)

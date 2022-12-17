@@ -101,11 +101,13 @@
             this.ControlBox = false;
             this.Controls.Add(this.butRun);
             this.Controls.Add(this.gbMethod);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AnimationDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Animation";
             this.gbMethod.ResumeLayout(false);
             this.gbMethod.PerformLayout();
             this.ResumeLayout(false);

@@ -85,6 +85,7 @@
             this.Controls.Add(this.butCancel);
             this.Controls.Add(this.butOk);
             this.Name = "DialogOperand";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Operand";
             this.ResumeLayout(false);
             this.PerformLayout();

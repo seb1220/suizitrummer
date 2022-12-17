@@ -15,7 +15,7 @@ namespace OperatorTreeKawicher
         public Node Left { set; get; }
         public Node Right { set; get; }
 
-        public Operator(int x, int y, string symbol) : base(x, y)
+        public Operator(int x, int y, string symbol) : base(x - RADIUS, y - RADIUS)
         {
             Symbol = symbol;
         }

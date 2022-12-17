@@ -90,6 +90,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbOperator);
             this.Name = "DialogOperator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Operator";
             this.ResumeLayout(false);
             this.PerformLayout();
