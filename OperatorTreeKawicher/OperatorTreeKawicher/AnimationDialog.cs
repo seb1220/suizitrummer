@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,15 +49,16 @@ namespace OperatorTreeKawicher
         {
             if (cbPostfix.Checked)
             {
-                SelectedType = AnimationType.Infix;
+                SelectedType = AnimationType.Postfix;
                 cbPrefix.Checked = false;
                 cbInfix.Checked = false;
             }
         }
 
-        private void AnimationDialog_Load(object sender, EventArgs e)
+        private void butRun_Click(object sender, EventArgs e)
         {
-            runAnimationHandler(SelectedType);
+            Thread t = new Thread(() => runAnimationHandler(SelectedType));
+            t.Start();
         }
     }
 }

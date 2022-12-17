@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -67,10 +68,11 @@ namespace OperatorTreeKawicher
                 move = nm.isIn(e.X, e.Y);
                 dx = x - move.X;
                 dy = y - move.Y;
-            } else if (e.Button == MouseButtons.Left && nm.isIn(e.X, e.Y) != null
+            }
+            else if (e.Button == MouseButtons.Left && nm.isIn(e.X, e.Y) != null
                 && nm.isIn(e.X, e.Y).GetType() == typeof(Operator))
             {
-                conn = (Operator) nm.isIn(e.X, e.Y);
+                conn = (Operator)nm.isIn(e.X, e.Y);
             }
         }
 
@@ -81,7 +83,8 @@ namespace OperatorTreeKawicher
                 move.X = e.X - dx;
                 move.Y = e.Y - dy;
                 Invalidate();
-            } else if (conn != null)
+            }
+            else if (conn != null)
             {
                 x = e.X;
                 y = e.Y;
@@ -94,7 +97,8 @@ namespace OperatorTreeKawicher
                 move = null;
             if (conn != null)
             {
-                if (nm.isIn(e.X, e.Y) != null) {
+                if (nm.isIn(e.X, e.Y) != null)
+                {
                     if (conn.My < nm.isIn(e.X, e.Y).My)
                     {
                         if (conn.Mx > nm.isIn(e.X, e.Y).Mx)
@@ -116,13 +120,36 @@ namespace OperatorTreeKawicher
             nm.paint(e.Graphics);
 
             if (nm.isValid())
+            {
                 lblValid.Text = "Valid";
+                miAnimation.Enabled = true;
+            }
             else
+            {
                 lblValid.Text = "Invalid";
+                miAnimation.Enabled = false;
+            }
 
-            lblPrefix.Text = nm.getPrefix();
-            lblInfix.Text = nm.getInfix();
-            lblPostfix.Text = nm.getPostfix();
+            List<Node> nodes = nm.getPrefix();
+            if (nodes == null)
+            {
+                lblPrefix.Text = "Invalid Tree";
+                lblInfix.Text = "Invalid Tree";
+                lblPostfix.Text = "Invalid Tree";
+                return;
+            }
+            
+            lblPrefix.Text = nodes.Aggregate("", (current, node) => current + (node.ToString() + " "));
+
+            nodes = nm.getInfix();
+            lblInfix.Text = nodes.Aggregate("", (current, node) => current +
+                ((node.GetType() == typeof(Operator) ? node.ToString() :
+                    (nodes.FindAll(n => n.GetType() == typeof(Operator)).Find(op => ((Operator)op).Left == node) != null ? "(" + node.ToString() : node.ToString() + ")")) 
+                + " "));
+
+            nodes = nm.getPostfix();
+            lblPostfix.Text = nodes.Aggregate("", (current, node) => current + (node.ToString() + " "));
+            
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,9 +194,13 @@ namespace OperatorTreeKawicher
         private void animationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (animationDialog.Visible)
+            {
+                miAnimation.Checked = false;
                 animationDialog.Hide();
+            }
             else
             {
+                miAnimation.Checked = true;
                 moveAnitmationDialog();
                 animationDialog.Show();
             }
@@ -187,9 +218,36 @@ namespace OperatorTreeKawicher
 
         private void animate(AnimationType type)
         {
-            // TODO: animation
-            
-            return;
+            switch (type)
+            {
+                case AnimationType.Prefix:
+                    foreach (Node node in nm.getPrefix()) {
+                        node.IsSelected = true;
+                        Invalidate();
+                        Thread.Sleep(1000);
+                        node.IsSelected = false;
+                    }
+                    break;
+                case AnimationType.Infix:
+                    foreach (Node node in nm.getInfix())
+                    {
+                        node.IsSelected = true;
+                        Invalidate();
+                        Thread.Sleep(1000);
+                        node.IsSelected = false;
+                    }
+                    break;
+                case AnimationType.Postfix:
+                    foreach (Node node in nm.getPostfix())
+                    {
+                        node.IsSelected = true;
+                        Invalidate();
+                        Thread.Sleep(1000);
+                        node.IsSelected = false;
+                    }
+                    break;
+            }
+            Invalidate();
         }
     }
 }

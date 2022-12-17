@@ -91,6 +91,7 @@
             this.butRun.TabIndex = 2;
             this.butRun.Text = "Run";
             this.butRun.UseVisualStyleBackColor = true;
+            this.butRun.Click += new System.EventHandler(this.butRun_Click);
             // 
             // AnimationDialog
             // 
@@ -105,7 +106,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Animation";
-            this.Load += new System.EventHandler(this.AnimationDialog_Load);
             this.gbMethod.ResumeLayout(false);
             this.gbMethod.PerformLayout();
             this.ResumeLayout(false);

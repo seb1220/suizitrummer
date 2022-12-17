@@ -50,7 +50,15 @@ namespace OperatorTreeKawicher
             // Draw string to screen.
             g.FillRectangle(new SolidBrush(Color.LightGray), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
             g.DrawString(Symbol, drawFont, drawBrush, X + RADIUS - size.Width / 2, Y + RADIUS - size.Height / 2);
-            g.DrawRectangle(new Pen(Color.Aqua, 2), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
+            if (IsSelected)
+                g.DrawRectangle(new Pen(Color.Red, 2), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
+            else
+                g.DrawRectangle(new Pen(Color.Aqua, 2), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
+        }
+
+        public override string ToString()
+        {
+            return Symbol;
         }
     }
 }

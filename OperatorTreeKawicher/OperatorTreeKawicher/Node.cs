@@ -11,6 +11,8 @@ namespace OperatorTreeKawicher
     internal abstract class Node
     {
         protected const int RADIUS = 20;
+
+        public bool IsSelected { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -30,5 +32,7 @@ namespace OperatorTreeKawicher
         {
             return Math.Sqrt((Mx - x) * (Mx - x) + (My - y) * (My - y)) <= RADIUS * 3;
         }
+
+        abstract public override string ToString();
     }
 }

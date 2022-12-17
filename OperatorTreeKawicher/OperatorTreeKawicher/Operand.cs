@@ -31,7 +31,15 @@ namespace OperatorTreeKawicher
             // Draw string to screen.
             g.FillEllipse(new SolidBrush(Color.Silver), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
             g.DrawString(Number.ToString(), drawFont, drawBrush, X + RADIUS - size.Width / 2, Y + RADIUS - size.Height / 2);
-            g.DrawEllipse(new Pen(Color.Fuchsia, 2), new Rectangle(X, Y, Node.RADIUS * 2 , Node.RADIUS * 2));
+            if (IsSelected)
+                g.DrawEllipse(new Pen(Color.Red, 2), new Rectangle(X, Y, Node.RADIUS * 2, Node.RADIUS * 2));
+            else
+                g.DrawEllipse(new Pen(Color.Fuchsia, 2), new Rectangle(X, Y, Node.RADIUS * 2 , Node.RADIUS * 2));
+        }
+
+        public override string ToString()
+        {
+            return Number.ToString();
         }
     }
 }
