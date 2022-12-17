@@ -30,15 +30,8 @@ namespace OperatorTreeKawicher
 
         public void paint(Graphics g)
         {
-            foreach (Node node in _nodes)
-            {
-                if (node.GetType() == typeof(Operator))
-                    ((Operator) node).paintConn(g);
-            }
-            foreach (Node node in _nodes)
-            {
-                node.paint(g);
-            }
+            _nodes.FindAll(n => n is Operator).ForEach(n => ((Operator)n).paintConn(g));
+            _nodes.ForEach(n => n.paint(g));
         }
 
         public Node isIn(int x, int y)
@@ -66,14 +59,18 @@ namespace OperatorTreeKawicher
             if (_nodes.FindAll(node => node.GetType() == typeof(Operator)).Count == 0)
                 return false;
 
-            foreach (Node node in _nodes)
+            foreach (Node node in _nodes.FindAll(node => node is Operator))
             {
-                if (node.GetType() == typeof(Operator))
-                {
-                    if (((Operator)node).isValid() == false)
-                        return false;
-                }
+                if (((Operator)node).isValid() == false)
+                    return false;
             }
+            
+            foreach (Node node in _nodes.FindAll(op => op is Operand))
+            {
+                if (_nodes.FindAll(n => n is Operator @operator && (@operator.Left == node || @operator.Right == node)).Count == 0)
+                    return false;
+            }
+            
             return true;
         }
 
@@ -87,9 +84,9 @@ namespace OperatorTreeKawicher
             {
                 if (node.GetType() == typeof(Operator))
                 {
-                    if (((Operator)node).Left == null && ((Operator)node).Left.GetType() == typeof(Operator))
+                    if (((Operator)node).Left != null && ((Operator)node).Left.GetType() == typeof(Operator))
                         operators.Add((Operator)((Operator)node).Left);
-                    if (((Operator)node).Right == null && ((Operator)node).Right.GetType() == typeof(Operator))
+                    if (((Operator)node).Right != null && ((Operator)node).Right.GetType() == typeof(Operator))
                         operators.Add((Operator)((Operator)node).Right);
                 }
             }

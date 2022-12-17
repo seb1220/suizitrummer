@@ -127,18 +127,16 @@ namespace OperatorTreeKawicher
             else
             {
                 lblValid.Text = "Invalid";
+                miAnimation.Checked = false;
                 miAnimation.Enabled = false;
-            }
-
-            List<Node> nodes = nm.getPrefix();
-            if (nodes == null)
-            {
+                animationDialog.Hide();
                 lblPrefix.Text = "Invalid Tree";
                 lblInfix.Text = "Invalid Tree";
                 lblPostfix.Text = "Invalid Tree";
                 return;
             }
-            
+
+            List<Node> nodes = nm.getPrefix();            
             lblPrefix.Text = nodes.Aggregate("", (current, node) => current + (node.ToString() + " "));
 
             nodes = nm.getInfix();
