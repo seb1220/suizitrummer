@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace OperatorTreeKawicher
 {
     [Serializable]
+
+    // This class represents an operand in the tree
     internal class Operator : Node
     {
         public string Symbol { private set; get; }

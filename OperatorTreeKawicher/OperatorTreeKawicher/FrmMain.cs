@@ -14,12 +14,15 @@ using System.Windows.Forms;
 
 namespace OperatorTreeKawicher
 {
+    // This enum is used to determine the type of animation to be used
     public enum AnimationType
     {
         Prefix,
         Infix,
         Postfix
     }
+
+    // This class works as the main form of the application and displays the tree
     public partial class FrmMain : Form
     {
         NodeManagement nm;

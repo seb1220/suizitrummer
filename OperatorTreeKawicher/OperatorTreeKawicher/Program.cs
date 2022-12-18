@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace OperatorTreeKawicher
 {
+
+    // This class starts the program
     internal static class Program
     {
         /// <summary>

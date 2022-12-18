@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace OperatorTreeKawicher
 {
+    // This class is used to create a dialog box that will allow the user to enter a value for the operand thats about to be created
     public partial class DialogOperator : Form
     {
         public string Symbol

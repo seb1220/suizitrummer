@@ -11,7 +11,10 @@ using System.Windows.Forms;
 
 namespace OperatorTreeKawicher
 {
+    // This class is used to animate the tree
+
     public delegate void RunAnimationHandler(AnimationType animationType);
+    
     public partial class AnimationDialog : Form
     {
         AnimationType SelectedType { get; set; }

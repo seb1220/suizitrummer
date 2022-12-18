@@ -9,6 +9,8 @@ using System.Windows.Forms;
 namespace OperatorTreeKawicher
 {
     [Serializable]
+
+    // This class is used to manage the nodes in the tree
     internal class NodeManagement
     {
         List<Node> _nodes;

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace OperatorTreeKawicher
 {
     [Serializable]
+
+    // This class represents a node that proper tree nodes elements from
     internal abstract class Node
     {
         protected const int RADIUS = 20;
