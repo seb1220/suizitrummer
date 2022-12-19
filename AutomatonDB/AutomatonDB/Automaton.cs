@@ -8,15 +8,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AutomatonDB
-{
+namespace AutomatonDB {
     [Serializable]
-    internal class Automaton
-    {
+    internal class Automaton {
         private string description;
 
-        public string Description
-        {
+        public string Description {
             private set { description = value; }
             get { return description; }
         }
@@ -25,22 +22,18 @@ namespace AutomatonDB
         private Dictionary<string, State> states;
         private State startState;
 
-        public Automaton(string fileName)
-        {
+        public Automaton(string fileName) {
             states = new Dictionary<string, State>();
             alphabet = new List<string>();
-            try
-            {
+            try {
                 ReadFromFile(fileName);
             }
-            catch (IOException e)
-            {
+            catch (IOException e) {
                 Console.WriteLine(e.Message);
             }
         }
 
-        public bool AddState(string description, bool isEndState)
-        {
+        public bool AddState(string description, bool isEndState) {
             if (states.ContainsKey(description))
                 return false;
 
@@ -53,8 +46,7 @@ namespace AutomatonDB
             return true;
         }
 
-        public bool AddTransition(string description, string input, string successor)
-        {
+        public bool AddTransition(string description, string input, string successor) {
             State from = states[description];
             State to = states[successor];
 
@@ -67,12 +59,10 @@ namespace AutomatonDB
             return from.AddTransition(input, to);
         }
 
-        public bool Run(string[] input)
-        {
+        public bool Run(string[] input) {
             State s = startState;
 
-            foreach (string i in input)
-            {
+            foreach (string i in input) {
                 if (s == null)
                     return false;
 
@@ -82,8 +72,7 @@ namespace AutomatonDB
             return s.IsEndState;
         }
 
-        public bool IsValid()
-        {
+        public bool IsValid() {
             foreach (State s in states.Values)
                 if (!s.IsValid(alphabet))
                     return false;
@@ -91,8 +80,7 @@ namespace AutomatonDB
             return true;
         }
 
-        public void ReadFromFile(string fileName)
-        {
+        public void ReadFromFile(string fileName) {
             string line;
             string[] parts;
 
@@ -102,21 +90,18 @@ namespace AutomatonDB
             alphabet = new List<string>(parts);
 
 
-            while (!sr.EndOfStream)
-            {
+            while (!sr.EndOfStream) {
                 line = sr.ReadLine();
                 if (line.Length == 0)
                     continue;
 
-                if (!line.Contains("-"))
-                {
+                if (!line.Contains("-")) {
                     if (line.StartsWith("(") && line.EndsWith(")"))
                         AddState(line.Substring(1, line.Length - 2), true);
                     else
                         AddState(line, false);
                 }
-                else
-                {
+                else {
                     parts = line.Split('-');
                     AddTransition(parts[0], parts[1], parts[2]);
                 }
@@ -126,50 +111,41 @@ namespace AutomatonDB
         }
 
 
-        public bool WriteIntoFile(string fileName)
-        {
-            try
-            {
+        public bool WriteIntoFile(string fileName) {
+            try {
                 StreamWriter sw = new StreamWriter(fileName);
                 Print(sw);
                 sw.Close();
                 return true;
             }
-            catch (IOException e)
-            {
+            catch (IOException e) {
                 return false;
             }
         }
 
-        public bool WriteIntoDatabase()
-        {
-            try
-            {
+        public bool WriteIntoDatabase() {
+            try {
                 Database.Connect();
                 Database.PostAutomaton(description, states, startState, alphabet);
                 Database.Disconnect();
                 return true;
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
             }
         }
 
-        public void Print()
-        {
+        public void Print() {
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             sw.AutoFlush = true;
             Console.SetOut(sw);
             Print(sw);
         }
 
-        private void Print(StreamWriter sw)
-        {
+        private void Print(StreamWriter sw) {
             sw.WriteLine(Description);
-            for (int i = 0; i < alphabet.Count; i++)
-            {
+            for (int i = 0; i < alphabet.Count; i++) {
                 sw.Write(alphabet[i]);
                 if (i < alphabet.Count - 1)
                     sw.Write("-");
@@ -178,16 +154,14 @@ namespace AutomatonDB
             sw.WriteLine();
 
             string s;
-            if (startState != null)
-            {
+            if (startState != null) {
                 s = startState.Description;
                 if (startState.IsEndState)
                     s = "(" + s + ")";
                 sw.WriteLine(s);
             }
 
-            foreach (string k in states.Keys)
-            {
+            foreach (string k in states.Keys) {
                 if (startState == null || startState.Description == k) continue;
                 s = k;
                 if (states[s].IsEndState)
