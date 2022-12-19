@@ -141,6 +141,22 @@ namespace AutomatonDB
             }
         }
 
+        public bool WriteIntoDatabase()
+        {
+            try
+            {
+                Database.Connect();
+                Database.PostAutomaton(description, states, startState, alphabet);
+                Database.Disconnect();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         public void Print()
         {
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
@@ -172,14 +188,12 @@ namespace AutomatonDB
 
             foreach (string k in states.Keys)
             {
-                if (startState != null && startState.Description != k)
-                {
-                    s = k;
-                    if (states[s].IsEndState)
-                        s = "(" + s + ")";
+                if (startState == null || startState.Description == k) continue;
+                s = k;
+                if (states[s].IsEndState)
+                    s = "(" + s + ")";
 
-                    sw.WriteLine(s);
-                }
+                sw.WriteLine(s);
             }
 
             foreach (string k in states.Keys)

@@ -60,6 +60,16 @@ namespace AutomatonDB
 
             return automatons[description].WriteIntoFile(fileName);
         }
+        
+        public bool WriteToDatabase(string description)
+        {
+            if (!automatons.ContainsKey(description))
+                return false;
+
+            automatons[description].WriteIntoDatabase();
+            
+            return true;
+        }
 
         public bool Remove(string description)
         {

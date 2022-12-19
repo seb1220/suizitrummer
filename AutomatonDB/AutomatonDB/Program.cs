@@ -11,10 +11,11 @@ namespace AutomatonDB
         static void Main(string[] args)
         {
             AutomatonManagement am = new AutomatonManagement();
-            am.Add(new Automaton("a1.txt"));
+            //am.Add(new Automaton("a1.txt"));
             am.Add(new Automaton("automat.txt"));
-            am.Print();
-            am.WriteIntoFile("a1", "b1.txt");
+            //am.Print();
+            //am.WriteIntoFile("a1", "b1.txt");
+            Console.WriteLine(am.WriteToDatabase("automat"));
         }
     }
 }

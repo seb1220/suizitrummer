@@ -1,0 +1,4 @@
+CONN_SERVER=localhost,1433
+CONN_DATABASE=Automaton
+CONN_USER_ID=automaton_user
+CONN_PASSWORD=Automaton123
