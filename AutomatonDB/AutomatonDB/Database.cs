@@ -24,7 +24,7 @@ namespace AutomatonDB {
             StreamReader sr = new StreamReader("../../config.txt");
             line = sr.ReadLine();
             parts = line.Split('=');
-            Console.WriteLine(parts[1]);
+            CONN_SERVER = parts[1];
             line = sr.ReadLine();
             parts = line.Split('=');
             CONN_DATABASE = parts[1];
@@ -66,11 +66,67 @@ namespace AutomatonDB {
         public static int PostAutomaton(String desc, Dictionary<string, State> states, State start,
             List<string> alphabet) {
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "insert into Automaton (desc) values (" + desc + ");";
+            cmd.CommandText = "insert into Automaton ([desc]) values ('" + desc + "');";
             cmd.ExecuteScalar();
 
-            foreach (var stateDesc in states.Keys) {
-                //cmd.CommandText = "insert into State values (" 
+            foreach (string stateDesc in states.Keys) {
+                //break;
+                cmd.CommandText =
+                    $"insert into State (desc_auto, [desc], end_state) values ('{desc}', '{states[stateDesc].Description}', '{states[stateDesc].IsEndState}');";
+                cmd.ExecuteScalar();
+            }
+
+            foreach (string letter in alphabet) {
+                cmd.CommandText = $"insert into Alphabet (letters, [desc]) values ('{letter}', '{desc}');";
+                cmd.ExecuteScalar();
+            }
+            
+            foreach (string stateDesc in states.Keys) {
+                int stateFrom = -1;
+                int stateTo = -1;
+                int letterId = -1;
+                
+                SqlDataReader reader;
+                
+                SqlCommand outerGetCmd = conn.CreateCommand();
+                outerGetCmd.CommandText =
+                    $"select id from State where desc_auto = '{desc}' and [desc] = '{states[stateDesc].Description}';";
+                reader = outerGetCmd.ExecuteReader();
+                if (reader.Read())
+                    stateFrom = (int)reader[0];
+                reader.Close();
+                
+                Console.WriteLine(stateFrom);
+
+                foreach (string letter in alphabet) {
+                    SqlCommand getCmd = conn.CreateCommand();
+                    getCmd.CommandText =
+                        $"select id from State where desc_auto = '{desc}' and [desc] = '{states[stateDesc].GetSuccessor(letter).Description}';";
+                    reader = getCmd.ExecuteReader();
+                    if (reader.Read())
+                        stateTo = (int)reader[0];
+                    reader.Close();
+                    
+                    Console.WriteLine(stateTo);
+                
+                    SqlCommand getCmd1 = conn.CreateCommand();
+                    getCmd1.CommandText =
+                        $"select id from Alphabet where [desc] = '{desc}' and letters = '{letter}';";
+                    reader = getCmd1.ExecuteReader();
+                    if (reader.Read())
+                        letterId = (int)reader[0];
+                    reader.Close();
+                    
+                    Console.WriteLine(letterId);
+
+                    if (stateFrom != -1 && stateTo != -1 && letterId != -1) {
+                        cmd.CommandText =
+                            $"insert into Transition (id_from, id_to, alphabet_id) values ({stateFrom}, {stateTo}, {letterId});";
+                        cmd.ExecuteReader();
+                    }
+                    
+                    reader.Close();
+                }
             }
 
             return 0;
