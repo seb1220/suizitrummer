@@ -135,6 +135,20 @@ namespace AutomatonDB {
                 return false;
             }
         }
+        
+        public bool ReadFromDatabase(string desc) {
+            try {
+                // TODO: GetAutomaton, Factory Class ? Overloaded Constructor / Changed Constructor ?
+                Database.Connect();
+                Database.GetAutomaton(desc);
+                Database.Disconnect();
+                return true;
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
         public void Print() {
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());

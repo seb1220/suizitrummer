@@ -134,6 +134,10 @@ namespace AutomatonDB {
 
             reader?.Dispose();
         }
+        
+        public static void GetAutomaton(String desc) {
+            Console.WriteLine("hilfe");
+        }
 
         public static int GetID(string table, string description) {
             int id = NOT_FOUND;
