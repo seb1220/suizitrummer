@@ -63,7 +63,7 @@ namespace AutomatonDB {
                 conn.Close();
         }
 
-        public static int PostAutomaton(String desc, Dictionary<string, State> states, State start,
+        public static void PostAutomaton(String desc, Dictionary<string, State> states, State start,
             List<string> alphabet) {
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "insert into Automaton ([desc]) values ('" + desc + "');";
@@ -81,44 +81,34 @@ namespace AutomatonDB {
                 cmd.ExecuteScalar();
             }
             
+            SqlDataReader reader = null;
             foreach (string stateDesc in states.Keys) {
                 int stateFrom = -1;
-
-                SqlDataReader reader;
                 
-                SqlCommand outerGetCmd = conn.CreateCommand();
-                outerGetCmd.CommandText =
+                cmd.CommandText =
                     $"select id from State where desc_auto = '{desc}' and [desc] = '{states[stateDesc].Description}';";
-                reader = outerGetCmd.ExecuteReader();
+                reader = cmd.ExecuteReader();
                 if (reader.Read())
                     stateFrom = (int)reader[0];
                 reader.Close();
                 
-                Console.WriteLine(stateFrom);
-
                 foreach (string letter in alphabet) {
                     int stateTo = -1;
                     int letterId = -1;
                     
-                    SqlCommand getCmd = conn.CreateCommand();
-                    getCmd.CommandText =
+                    cmd.CommandText =
                         $"select id from State where desc_auto = '{desc}' and [desc] = '{states[stateDesc].GetSuccessor(letter).Description}';";
-                    reader = getCmd.ExecuteReader();
+                    reader = cmd.ExecuteReader();
                     if (reader.Read())
                         stateTo = (int)reader[0];
                     reader.Close();
                     
-                    Console.WriteLine(stateTo);
-                
-                    SqlCommand getCmd1 = conn.CreateCommand();
-                    getCmd1.CommandText =
+                    cmd.CommandText =
                         $"select id from Alphabet where [desc] = '{desc}' and letters = '{letter}';";
-                    reader = getCmd1.ExecuteReader();
+                    reader = cmd.ExecuteReader();
                     if (reader.Read())
                         letterId = (int)reader[0];
                     reader.Close();
-                    
-                    Console.WriteLine(letterId);
                     
                     if (stateFrom != -1 && stateTo != -1 && letterId != -1) {
                         cmd.CommandText =
@@ -126,11 +116,23 @@ namespace AutomatonDB {
                         cmd.ExecuteScalar();
                     }
                 }
-                
-                reader.Dispose();
             }
-            
-            return 0;
+
+            int startId = -1;
+            cmd.CommandText =
+                $"select id from State where desc_auto = '{desc}' and [desc] = '{start.Description}';";
+            reader = cmd.ExecuteReader();
+            if (reader.Read()) {
+                startId = (int)reader[0];
+            }
+            reader.Close();
+            if (startId != -1) {
+                cmd.CommandText =
+                    $"update Automaton set start_state = {startId} where [desc] = '{desc}';";
+                cmd.ExecuteScalar();
+            }
+
+            reader?.Dispose();
         }
 
         public static int GetID(string table, string description) {
