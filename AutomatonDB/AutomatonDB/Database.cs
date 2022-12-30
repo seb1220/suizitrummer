@@ -83,9 +83,7 @@ namespace AutomatonDB {
             
             foreach (string stateDesc in states.Keys) {
                 int stateFrom = -1;
-                int stateTo = -1;
-                int letterId = -1;
-                
+
                 SqlDataReader reader;
                 
                 SqlCommand outerGetCmd = conn.CreateCommand();
@@ -99,6 +97,9 @@ namespace AutomatonDB {
                 Console.WriteLine(stateFrom);
 
                 foreach (string letter in alphabet) {
+                    int stateTo = -1;
+                    int letterId = -1;
+                    
                     SqlCommand getCmd = conn.CreateCommand();
                     getCmd.CommandText =
                         $"select id from State where desc_auto = '{desc}' and [desc] = '{states[stateDesc].GetSuccessor(letter).Description}';";
@@ -118,17 +119,17 @@ namespace AutomatonDB {
                     reader.Close();
                     
                     Console.WriteLine(letterId);
-
+                    
                     if (stateFrom != -1 && stateTo != -1 && letterId != -1) {
                         cmd.CommandText =
                             $"insert into Transition (id_from, id_to, alphabet_id) values ({stateFrom}, {stateTo}, {letterId});";
-                        cmd.ExecuteReader();
+                        cmd.ExecuteScalar();
                     }
-                    
-                    reader.Close();
                 }
+                
+                reader.Dispose();
             }
-
+            
             return 0;
         }
 
