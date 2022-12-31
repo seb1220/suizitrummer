@@ -153,7 +153,6 @@ namespace AutomatonDB {
         
         public bool ReadFromDatabase(string desc, Automaton automaton) {
             try {
-                // TODO: GetAutomaton, Factory Class ? Overloaded Constructor / Changed Constructor ?
                 Database.Connect();
                 Database.GetAutomaton(desc, automaton);
                 Database.Disconnect();
