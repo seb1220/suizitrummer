@@ -70,7 +70,6 @@ namespace AutomatonDB {
             cmd.ExecuteScalar();
 
             foreach (string stateDesc in states.Keys) {
-                //break;
                 cmd.CommandText =
                     $"insert into State (desc_auto, [desc], end_state) values ('{desc}', '{states[stateDesc].Description}', '{states[stateDesc].IsEndState}');";
                 cmd.ExecuteScalar();
@@ -135,8 +134,41 @@ namespace AutomatonDB {
             reader?.Dispose();
         }
         
-        public static void GetAutomaton(String desc) {
-            Console.WriteLine("hilfe");
+        public static void GetAutomaton(String desc, Automaton automaton) {
+            SqlDataReader reader = null;
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = $"select [desc] from Automaton where [desc] = '{desc}';";
+            reader = cmd.ExecuteReader();
+            if (!reader.Read())
+                throw new Exception($"Can't find an Automaton with the description {desc} in the database.");
+            reader.Close();
+
+            cmd.CommandText = $"select * from Alphabet where [desc] = '{desc}';";
+            reader = cmd.ExecuteReader();
+            while(reader.Read()) {
+                automaton.alphabet.Add((string)reader[1]);
+            }
+            reader.Close();
+            
+            cmd.CommandText = $"select * from State where desc_auto = '{desc}';";
+            reader = cmd.ExecuteReader();
+            while(reader.Read()) {
+                automaton.AddState((string)reader[2], (bool)reader[3]);
+            }
+            reader.Close();
+            
+            cmd.CommandText = $"select S1.[desc], A.letters, S2.[desc] from Transition t\n" +
+                                    $"join State S1 on t.id_from = S1.id and S1.desc_auto = '{desc}'\n" +
+                                    $"join State S2 on t.id_to = S2.id and S2.desc_auto = '{desc}'\n" +
+                                    $"join Alphabet A on t.alphabet_id = A.id;";
+            reader = cmd.ExecuteReader();
+            while(reader.Read()) {
+                automaton.AddTransition((string)reader[0], (string)reader[1], (string)reader[2]);
+            }
+            reader.Close();
+            
+            
+            reader.Dispose();
         }
 
         public static int GetID(string table, string description) {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -18,19 +19,33 @@ namespace AutomatonDB {
             get { return description; }
         }
 
-        private List<string> alphabet;
+        public List<string> alphabet;
         private Dictionary<string, State> states;
         private State startState;
 
-        public Automaton(string fileName) {
+        private Automaton(string name, bool file) {
             states = new Dictionary<string, State>();
             alphabet = new List<string>();
-            try {
-                ReadFromFile(fileName);
+            if (file) {
+                try {
+                    ReadFromFile(name);
+                }
+                catch (IOException e) {
+                    Console.WriteLine(e.Message);
+                }
             }
-            catch (IOException e) {
-                Console.WriteLine(e.Message);
+            else {
+                Description = name;
+                ReadFromDatabase(name, this);
             }
+        }
+
+        public static Automaton AutomatonFromFile(string fileName) {
+            return new Automaton(fileName, true);
+        }
+        
+        public static Automaton AutomatonFromDb(string desc) {
+            return new Automaton(desc, false);
         }
 
         public bool AddState(string description, bool isEndState) {
@@ -136,11 +151,11 @@ namespace AutomatonDB {
             }
         }
         
-        public bool ReadFromDatabase(string desc) {
+        public bool ReadFromDatabase(string desc, Automaton automaton) {
             try {
                 // TODO: GetAutomaton, Factory Class ? Overloaded Constructor / Changed Constructor ?
                 Database.Connect();
-                Database.GetAutomaton(desc);
+                Database.GetAutomaton(desc, automaton);
                 Database.Disconnect();
                 return true;
             }
