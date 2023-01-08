@@ -170,52 +170,5 @@ namespace AutomatonDB {
             
             reader.Dispose();
         }
-
-        public static int GetID(string table, string description) {
-            int id = NOT_FOUND;
-            SqlDataReader reader;
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select ID From " + table + " Where Description='" + description + "'";
-
-            reader = cmd.ExecuteReader();
-
-            if (reader.Read())
-                id = (int)reader[0];
-            reader.Close();
-
-            return id;
-        }
-
-        public static int GetIDClass(string description, int idSchool) {
-            int id = NOT_FOUND;
-            SqlDataReader reader;
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select ID From Class WHERE Description='" + description + "' AND ";
-            cmd.CommandText += "ID_School=" + idSchool;
-
-            reader = cmd.ExecuteReader();
-
-            if (reader.Read())
-                id = (int)reader[0];
-            reader.Close();
-
-            return id;
-        }
-
-        public static int GetIDTeacher(string description, int idSchool) {
-            int id = NOT_FOUND;
-            SqlDataReader reader;
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select ID From Teacher WHERE Description='" + description + "' AND ";
-            cmd.CommandText += "ID_School=" + idSchool;
-
-            reader = cmd.ExecuteReader();
-
-            if (reader.Read())
-                id = (int)reader[0];
-            reader.Close();
-
-            return id;
-        }
     }
 }
